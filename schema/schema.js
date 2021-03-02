@@ -8,7 +8,7 @@ const _ = require("lodash");
 
 const team = [
   {
-    id: 1,
+    id: "1",
     name: "Liverpool Football Club",
     founded: 1892,
     country: "England",
@@ -16,7 +16,7 @@ const team = [
     league: "Premier League",
   },
   {
-    id: 2,
+    id: "2",
     name: "Arsenal Football Club",
     founded: 1888,
     country: "England",
@@ -40,13 +40,13 @@ const TeamType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
-    user: {
+    team: {
       type: TeamType,
       args: {
         id: { type: GraphQLString },
-        resolve(parentValue, args) {
-          return _.find(team, { id: args.id });
-        },
+      },
+      resolve(parentValue, args) {
+        return _.find(team, { id: args.id });
       },
     },
   },
